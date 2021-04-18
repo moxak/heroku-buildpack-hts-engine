@@ -1,34 +1,46 @@
 #!/usr/bin/env bash
-cd /tmp
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+BUILD_DIR=$1
+VENDOR_DIR="ven"
+cd $BUILD_DIR
+mkdir -p $VENDOR_DIR
+
+
+echo "-----> Install hts_engine_API"
+cd $VENDOR_DIR
 wget http://sourceforge.net/projects/hts-engine/files/hts_engine%20API/hts_engine_API-1.08/hts_engine_API-1.08.tar.gz
 wget http://sourceforge.net/projects/hts-engine/files/Flite%2Bhts_engine/Flite%2Bhts_engine-1.05/flite%2Bhts_engine-1.05.tar.gz
 wget http://sourceforge.net/projects/hts-engine/files/HTS%20voice/hts_voice_cmu_us_arctic_slt-1.05/hts_voice_cmu_us_arctic_slt-1.05.tar.gz
-cd /tmp
+cd $VENDOR_DIR
 tar -xvzof hts_engine_API-1.08.tar.gz
 cd hts_engine_API-1.08
 ./configure
 make
 make install
-cd /tmp
+cd $VENDOR_DIR
 tar -xvzof flite+hts_engine-1.05.tar.gz
 cd flite+hts_engine-1.05
 ./configure
 make
 make install
-cd /tmp
+cd $VENDOR_DIR
 tar -xvzof hts_voice_cmu_us_arctic_slt-1.05.tar.gz
-cd /tmp
+cd $VENDOR_DIR
 wget http://sourceforge.net/projects/open-jtalk/files/Open%20JTalk/open_jtalk-1.07/open_jtalk-1.07.tar.gz
 wget http://sourceforge.net/projects/open-jtalk/files/HTS%20voice/hts_voice_nitech_jp_atr503_m001-1.05/hts_voice_nitech_jp_atr503_m001-1.05.tar.gz
 wget http://sourceforge.net/projects/open-jtalk/files/Dictionary/open_jtalk_dic-1.07/open_jtalk_dic_utf_8-1.07.tar.gz
 wget http://sourceforge.net/projects/mmdagent/files/MMDAgent/MMDAgent-1.4/MMDAgent-1.4.zip
-cd /tmp
+cd $VENDOR_DIR
 tar -xvzof open_jtalk-1.07.tar.gz
 cd open_jtalk-1.07
 ./configure --with-charset=utf-8
 make
 make install
-cd /tmp
+cd $VENDOR_DIR
 tar -xvzof open_jtalk_dic_utf_8-1.07.tar.gz
-cd /tmp
+cd $VENDOR_DIR
 tar -xvzof hts_voice_nitech_jp_atr503_m001-1.05.tar.gz
