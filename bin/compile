@@ -11,18 +11,20 @@ mkdir -p $VENDOR_DIR
 
 echo "-----> Install hts_engine_API"
 cd $VENDOR_DIR
-wget http://sourceforge.net/projects/hts-engine/files/hts_engine%20API/hts_engine_API-1.08/hts_engine_API-1.08.tar.gz
-wget http://sourceforge.net/projects/hts-engine/files/Flite%2Bhts_engine/Flite%2Bhts_engine-1.05/flite%2Bhts_engine-1.05.tar.gz
-wget http://sourceforge.net/projects/hts-engine/files/HTS%20voice/hts_voice_cmu_us_arctic_slt-1.05/hts_voice_cmu_us_arctic_slt-1.05.tar.gz
+wget --quiet http://sourceforge.net/projects/hts-engine/files/hts_engine%20API/hts_engine_API-1.08/hts_engine_API-1.08.tar.gz
+wget --quiet http://sourceforge.net/projects/hts-engine/files/Flite%2Bhts_engine/Flite%2Bhts_engine-1.05/flite%2Bhts_engine-1.05.tar.gz
+wget --quiet http://sourceforge.net/projects/hts-engine/files/HTS%20voice/hts_voice_cmu_us_arctic_slt-1.05/hts_voice_cmu_us_arctic_slt-1.05.tar.gz
 tar -xvzof hts_engine_API-1.08.tar.gz
 cd hts_engine_API-1.08
-./configure
+./configure --quiet
 make
 make install
 cd ..
 tar -xvzof flite+hts_engine-1.05.tar.gz
 cd flite+hts_engine-1.05
-./configure
+./configure --quiet --with-hts-engine-header-path=../hts_engine_API-1.08/include --with-hts-engine-library-path=../hts_engine_API-1.08/lib
+cp include/HTS_engine.h HTS_engine.h
+cp -r ../hts_engine_API-1.08 hts_engine_API-1.08
 make
 make install
 cd ..
@@ -30,16 +32,23 @@ tar -xvzof hts_voice_cmu_us_arctic_slt-1.05.tar.gz
 
 
 echo "-----> Install open_jtalk"
-wget http://sourceforge.net/projects/open-jtalk/files/Open%20JTalk/open_jtalk-1.07/open_jtalk-1.07.tar.gz
-wget http://sourceforge.net/projects/open-jtalk/files/HTS%20voice/hts_voice_nitech_jp_atr503_m001-1.05/hts_voice_nitech_jp_atr503_m001-1.05.tar.gz
-wget http://sourceforge.net/projects/open-jtalk/files/Dictionary/open_jtalk_dic-1.07/open_jtalk_dic_utf_8-1.07.tar.gz
-wget http://sourceforge.net/projects/mmdagent/files/MMDAgent/MMDAgent-1.4/MMDAgent-1.4.zip
+wget --quiet http://sourceforge.net/projects/open-jtalk/files/Open%20JTalk/open_jtalk-1.07/open_jtalk-1.07.tar.gz
+wget --quiet http://sourceforge.net/projects/open-jtalk/files/HTS%20voice/hts_voice_nitech_jp_atr503_m001-1.05/hts_voice_nitech_jp_atr503_m001-1.05.tar.gz
+wget --quiet http://sourceforge.net/projects/open-jtalk/files/Dictionary/open_jtalk_dic-1.07/open_jtalk_dic_utf_8-1.07.tar.gz
+wget --quiet http://sourceforge.net/projects/mmdagent/files/MMDAgent/MMDAgent-1.4/MMDAgent-1.4.zip
 
 tar -xvzof open_jtalk-1.07.tar.gz
 cd open_jtalk-1.07
-./configure --with-charset=utf-8
+./configure --with-charset=utf-8 --quiet
 make
 make install
 cd ..
 tar -xvxof open_jtalk_dic_utf_8-1.07.tar.gz
 tar -xvxof hts_voice_nitech_jp_atr503_m001-1.05.tar.gz
+
+PROFILE_PATH="$BUILD_DIR/.profile.d/path.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:${HOME}/ven/hts_engine_API-1.08/bin/hts_engine"' >> $PROFILE_PATH
+echo 'export PATH="$PATH:${HOME}/ven/flite+hts_engine-1.05/bin/flite_hts_engine"' >> $PROFILE_PATH
+# echo 'export PATH="$PATH:${HOME}/ven/hts_engine"' >> $PROFILE_PATH
+
