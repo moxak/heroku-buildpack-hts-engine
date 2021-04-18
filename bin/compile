@@ -31,11 +31,11 @@ cd ..
 tar -xvzof hts_voice_cmu_us_arctic_slt-1.05.tar.gz
 
 
-# echo "-----> Install open_jtalk"
+echo "-----> Install open_jtalk"
 # wget --quiet http://sourceforge.net/projects/open-jtalk/files/Open%20JTalk/open_jtalk-1.07/open_jtalk-1.07.tar.gz
-# wget --quiet http://sourceforge.net/projects/open-jtalk/files/HTS%20voice/hts_voice_nitech_jp_atr503_m001-1.05/hts_voice_nitech_jp_atr503_m001-1.05.tar.gz
-# wget --quiet http://sourceforge.net/projects/open-jtalk/files/Dictionary/open_jtalk_dic-1.07/open_jtalk_dic_utf_8-1.07.tar.gz
-# wget --quiet http://sourceforge.net/projects/mmdagent/files/MMDAgent/MMDAgent-1.4/MMDAgent-1.4.zip
+wget --quiet http://sourceforge.net/projects/open-jtalk/files/HTS%20voice/hts_voice_nitech_jp_atr503_m001-1.05/hts_voice_nitech_jp_atr503_m001-1.05.tar.gz
+wget --quiet http://sourceforge.net/projects/open-jtalk/files/Dictionary/open_jtalk_dic-1.07/open_jtalk_dic_utf_8-1.07.tar.gz
+wget --quiet http://sourceforge.net/projects/mmdagent/files/MMDAgent/MMDAgent-1.4/MMDAgent-1.4.zip
 
 # tar -xvzof open_jtalk-1.07.tar.gz
 # cd open_jtalk-1.07
@@ -43,5 +43,5 @@ tar -xvzof hts_voice_cmu_us_arctic_slt-1.05.tar.gz
 # make --quiet
 # make install
 # cd ..
-# tar -xvxof open_jtalk_dic_utf_8-1.07.tar.gz
-# tar -xvxof hts_voice_nitech_jp_atr503_m001-1.05.tar.gz
+tar -xvxof open_jtalk_dic_utf_8-1.07.tar.gz
+tar -xvxof hts_voice_nitech_jp_atr503_m001-1.05.tar.gz
