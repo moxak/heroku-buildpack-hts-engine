@@ -40,5 +40,6 @@ cd open_jtalk-1.07
 ./configure --with-charset=utf-8
 make
 make install
+cd ..
 tar -xvxof open_jtalk_dic_utf_8-1.07.tar.gz
 tar -xvxof hts_voice_nitech_jp_atr503_m001-1.05.tar.gz
