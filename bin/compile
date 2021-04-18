@@ -15,7 +15,7 @@ cd flite+hts_engine-1.05
 ./configure
 make
 make install
-cd /usr/local/share
+cd /tmp
 tar -xvzof /tmp/hts_voice_cmu_us_arctic_slt-1.05.tar.gz
 cd /tmp
 wget http://sourceforge.net/projects/open-jtalk/files/Open%20JTalk/open_jtalk-1.07/open_jtalk-1.07.tar.gz
